@@ -70,6 +70,10 @@ body {
     cursor: pointer;
 }
 
+#rmv {
+    background-color: #ff0000;
+}
+
 .gameDetail {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;

@@ -143,7 +143,7 @@ function renderContent() {
             <p>Descrição: ${game.description}</p>
             <p>Plataforma: ${game.platform}</p>
             <img src="${game.imgLink}" alt="${game.title}">
-            <button onclick="removeGame(${game.id})">Remover jogo</button>
+            <button class="button" id="rmv" onclick="removeGame(${game.id})">Remover jogo</button>
         </div>
         `;
     });
