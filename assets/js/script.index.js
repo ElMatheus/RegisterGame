@@ -64,6 +64,11 @@ class Game {
         this.description = description;
         this.platform = platform;
         this.imgLink = imgLink;
+        this.id = this.generateId();
+    }
+
+    generateId() {
+        return parseInt(Math.random() * 9999);
     }
 }
 
@@ -98,10 +103,19 @@ class GameList {
             clearFields();
         }
     }
+
+    getRemoveGame(id) {
+        this.games = this.games.filter(game => game.id != id);
+    }
 }
+
 
 const libraryGames = new GameList();
 
+function removeGame(id) {
+    libraryGames.getRemoveGame(id);
+    renderContent();
+}
 /* La em add surgiu a necessidade de apos criar o objeto 
 que eu limpe os inputs entao eu criei uma funcao de ação */
 
@@ -129,6 +143,7 @@ function renderContent() {
             <p>Descrição: ${game.description}</p>
             <p>Plataforma: ${game.platform}</p>
             <img src="${game.imgLink}" alt="${game.title}">
+            <button onclick="removeGame(${game.id})">Remover jogo</button>
         </div>
         `;
     });
