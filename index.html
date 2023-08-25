@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.index.css">
+    <script src="./assets/js/script.index.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Div onde vai ter os inputs -->
+    <div id="main-container">
+        <!-- Criar h2 para titulo -->
+        <h2 id="main-title">Cadastrar Jogos</h2>
+        <!-- Separar buton, inputs e labels afim de ter um controle melhor bos inputs-->
+        <div id="inputs-container">
+            <!-- inputs, labels e button para enviar o form -->
+            <label for="title-input">Titulo:</label>
+            <input id="title-input" name="title-input" class="inputs" type="text">
+            <label for="price-input">Preço:</label>
+            <input id="price-input" name="price-input" class="inputs" type="number">
+            <label for="description-input">Descrição:</label>
+            <input id="description-input" name="description-input" class="inputs" type="text">
+            <label for="platform-input">Plataforma:</label>
+            <input id="platform-input" name="platform-input" class="inputs" type="text">
+            <label for="imgLink-input">Link da imagem:</label>
+            <input id="imgLink-input" name="imgLink-input" class="inputs" type="text">
+
+            <!-- Div para obtermos um erro para depois colocarmos no js -->
+
+            <div id="msg"></div>
+
+            <!-- Botao para enviar o formulario -->
+
+            <button id="createGames-button" onclick="composeGame()" class="button">Adicionar jogos2</button>
+        </div>
+    </div>
+    <h1>Lista de Jogos</h1>
+
+    <div class="container-gameList">
+        <div id="gameList" class="game-list">
+        </div>
+    </div>
+</body>
+
+</html>
