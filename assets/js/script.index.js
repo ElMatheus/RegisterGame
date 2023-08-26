@@ -35,7 +35,7 @@ function verifyInputs() {
 }
 
 function verifySrc(src) {
-    if (src.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+    if (src.match(/\.(jpeg|jpg|webp|gif|png)$/) != null) {
         sendMsg('Cadastrado com sucesso', 'success');
         return true;
     } else {
@@ -97,7 +97,7 @@ class GameList {
     }
 
     add(param) {
-        if (!verifyInputs() && verifySrc(param.imgLink) == true) {
+        if (!verifyInputs() && verifySrc(param.imgLink.toLowerCase()) == true) {
             this.games.push(param);
             renderContent();
             clearFields();

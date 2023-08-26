@@ -86,7 +86,7 @@ body {
 .gameDetail img {
     height: auto;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 1rem auto;
     width: 270px;
     height: 376px;
     object-fit: cover;
