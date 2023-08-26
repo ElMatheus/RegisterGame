@@ -114,3 +114,7 @@ body {
 #price {
     color: green;
 }
+
+.center {
+    justify-content: center;
+}

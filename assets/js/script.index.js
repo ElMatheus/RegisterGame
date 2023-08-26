@@ -22,7 +22,7 @@ function verifyInputs() {
     console.log(platform);
     console.log(imgLink);
     // Verificar se o if esta funcionando
-    if(title == '' || price == '' || description == '' || platform == '' || imgLink == ''){
+    if (title == '' || price == '' || description == '' || platform == '' || imgLink == '') {
         console.log('Os inputs estao vazios');
         // E se estiver funcionando retorna verdadeiro
         sendMsg('Preencha todos os campos', 'error');
@@ -35,7 +35,7 @@ function verifyInputs() {
 }
 
 function verifySrc(src) {
-    if(src.match(/\.(jpeg|jpg|gif|png)$/) != null){
+    if (src.match(/\.(jpeg|jpg|gif|png)$/) != null) {
         sendMsg('Cadastrado com sucesso', 'success');
         return true;
     } else {
@@ -47,18 +47,18 @@ function verifySrc(src) {
 function sendMsg(msg, typeMsg) {
     let msgDiv = document.getElementById('msg');
     msgDiv.innerHTML = '';
-    let msgParaTela=`
+    let msgParaTela = `
         <p class="${typeMsg}">${msg}</p>
     `;
     msgDiv.innerHTML = msgParaTela;
 
-    setTimeout(function() {
+    setTimeout(function () {
         msgDiv.innerHTML = '';
     }, 3000);
 }
 
 class Game {
-    constructor(title,price,description,platform,imgLink){
+    constructor(title, price, description, platform, imgLink) {
         this.title = title;
         this.price = price;
         this.description = description;
@@ -72,7 +72,7 @@ class Game {
     }
 }
 
-const gameTeste = new Game('teste','123','Deskteste','PS4','url');
+const gameTeste = new Game('teste', '123', 'Deskteste', 'PS4', 'url');
 
 console.log(gameTeste);
 
@@ -83,7 +83,7 @@ function composeGame() {
     let platform = document.getElementById('platform-input').value;
     let imgLink = document.getElementById('imgLink-input').value;
 
-    const game = new Game(title,price,description,platform,imgLink);
+    const game = new Game(title, price, description, platform, imgLink);
 
     console.log(game);
 
@@ -97,7 +97,7 @@ class GameList {
     }
 
     add(param) {
-        if(!verifyInputs() && verifySrc(param.imgLink) == true) {
+        if (!verifyInputs() && verifySrc(param.imgLink) == true) {
             this.games.push(param);
             renderContent();
             clearFields();
@@ -106,6 +106,10 @@ class GameList {
 
     getRemoveGame(id) {
         this.games = this.games.filter(game => game.id != id);
+    }
+
+    countGames() {
+        return this.games.length;
     }
 }
 
@@ -121,22 +125,31 @@ que eu limpe os inputs entao eu criei uma funcao de ação */
 
 function clearFields() {
     document.getElementById('title-input').value = '';
-    document.getElementById('price-input').value ='';
-    document.getElementById('description-input').value='';
-    document.getElementById('platform-input').value='';
-    document.getElementById('imgLink-input').value='';
+    document.getElementById('price-input').value = '';
+    document.getElementById('description-input').value = '';
+    document.getElementById('platform-input').value = '';
+    document.getElementById('imgLink-input').value = '';
 }
 
-window.console.clear();
 
+// funca que recarregara a pagina e se nao houver nenhum jogo adiconado falara!
+
+function loadGames() {
+    renderContent();
+}
 // agora fazer uma funcao que renderizara o objeto no html
 
 function renderContent() {
     let html = '';
     let array = libraryGames.games;
 
-    array.forEach(game => {
-        html += `
+    if (libraryGames.countGames() == 0) {
+        document.getElementsByClassName('container-gameList')[0].classList.add("center");
+        html = '<h2>Nenhum jogo adicionado :(</h2>';
+    } else {
+        document.getElementsByClassName('container-gameList')[0].classList.remove("center");
+        array.forEach(game => {
+            html += `
         <div class="gameDetail">
             <p>Titulo: <strong> ${game.title} </strong></p>
             <p id="price">Preço: R$${game.price}</p>
@@ -146,7 +159,9 @@ function renderContent() {
             <button class="button" id="rmv" onclick="removeGame(${game.id})">Remover jogo</button>
         </div>
         `;
-    });
-
+        });
+    }
     document.getElementById('gameList').innerHTML = html;
 }
+
+window.console.clear();
